@@ -1,0 +1,23 @@
+name: Deploy to Main
+on:
+   workflow_dispatch:
+
+jobs:
+     create_pull_request:
+       runs-on: ubuntu-latest
+       steps:
+         - name: Checkout code
+           uses: actions/checkout@v2
+         - name: Create Pull Request
+           uses: actions/github-script@v5
+           with:
+             script: |
+               const { owner, repo } = context.repo
+               const { data: pullRequest } = await github.pulls.create({
+                 owner,
+                 repo,
+                 title: 'Pull Request from dev to main',
+                 head: 'dev',
+                 base: 'main',
+               })
+   

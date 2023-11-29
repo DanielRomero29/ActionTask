@@ -1,2 +1,1 @@
-
-# ActionTask1244
+# GitHub Actions Exercises

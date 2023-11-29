@@ -1,0 +1,45 @@
+name: CI
+
+on:
+ pull_request:
+   types: [opened, synchronize]
+
+jobs:
+ build:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout code
+       uses: actions/checkout@v2
+     - name: Build
+       run: echo "Building the project..."
+
+ sonar:
+   needs: build
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout code
+       uses: actions/checkout@v2
+     - name: Run SonarQube analysis
+       uses: sonarsource/sonarcloud-github-action@master
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+ fortify:
+   needs: build
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout code
+       uses: actions/checkout@v2
+     - name: Run Fortify analysis
+       run: echo "Running Fortify analysis..."
+
+ deploy:
+  needs: [build, sonar, fortify]
+  if: github.event_name == 'pull_request' && github.event.action == 'closed'
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Deploy to production
+      run: echo "Deploying to production..."

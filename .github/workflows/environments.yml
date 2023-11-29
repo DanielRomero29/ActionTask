@@ -1,0 +1,17 @@
+name: Environment
+on:
+ workflow_dispatch:
+ 
+jobs:
+ deploy:
+   runs-on: ubuntu-latest
+   strategy: 
+     matrix: 
+       environment: [pro, dev]
+   steps:
+     - name: Checkout code
+       uses: actions/checkout@v4
+     - name: Show environment variable
+       run: echo ${{ matrix.ENV_VAR }}
+       env:
+         ENV_VAR : $$ {{ secrets[matrix.environment] }}

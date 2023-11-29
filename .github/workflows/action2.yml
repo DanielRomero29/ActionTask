@@ -35,11 +35,11 @@ jobs:
        run: echo "Running Fortify analysis..."
 
  deploy:
-  needs: [build, sonar, fortify]
-  if: github.event_name == 'pull_request' && github.event.action == 'closed'
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Deploy to production
-      run: echo "Deploying to production..."
+   needs: [build, sonar, fortify]
+   if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout code
+       uses: actions/checkout@v2
+     - name: Deploy to production
+       run: echo "Deploying to production..."

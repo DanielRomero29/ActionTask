@@ -1,0 +1,32 @@
+name: Create PR and Check Merge
+on:
+ workflow_dispatch:
+ pull_request:
+  types:
+    - closed
+
+jobs:
+ create_pr:
+  if: github.event_name == 'workflow_dispatch'
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Create Pull Request
+      uses: repo-sync/pull-request@v2
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        destination_branch: "main" # rama a la que se hará la pull request
+        pr_title: "Pull request from Develop to Main"
+        pr_body: "This is an automated pull request to update the main branch"
+        pr_label: "automated-pr"
+
+ if_merged:
+  if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
+  runs-on: ubuntu-latest
+  steps:
+  - name: Checkout code
+    uses: actions/checkout@v2
+  - name: Notify merge
+    run: echo "The PR was merged"

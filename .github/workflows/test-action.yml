@@ -1,0 +1,47 @@
+name: CI
+
+on:
+ push:
+   branches: 
+    - main
+ pull_request:
+   types: [opened, synchronize]
+
+jobs:
+ build:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout code
+       uses: actions/checkout@v4
+     - name: Build
+       run: echo "Building the project..."
+
+ sonar:
+   needs: build
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout code
+       uses: actions/checkout@v4
+     - name: Run SonarQube analysis
+       run: echo "Running SonarQube analysis..."
+
+ fortify:
+   needs: build
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout code
+       uses: actions/checkout@v4
+     - name: Run Fortify analysis
+       run: echo "Running Fortify analysis..."
+
+ deploy:
+   needs: [build, sonar, fortify]
+   if: github.event_name == 'push'
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout code
+       uses: actions/checkout@v4
+     - name: Deploy to production
+       run: echo "Deploying to production..."
+
+  

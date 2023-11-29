@@ -36,22 +36,12 @@ jobs:
 
  deploy:
    needs: [build, sonar, fortify]
-   if: github.event.pull_request.merged == true
+   if: github.event_name == 'push'
    runs-on: ubuntu-latest
    steps:
      - name: Checkout code
        uses: actions/checkout@v4
      - name: Deploy to production
        run: echo "Deploying to production..."
-
- deploy_not_merged:
-   needs: [build, sonar, fortify]
-   if: github.event.pull_request.merged == false
-   runs-on: ubuntu-latest
-   steps:
-     - name: Checkout code
-       uses: actions/checkout@v4
-     - name: Not merged
-       run: echo "No se ha mergeado"
 
   

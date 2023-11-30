@@ -1,0 +1,21 @@
+on: 
+ workflow_dispatch:
+  inputs:
+    environment:
+      type: choice
+      description: 'Escoge un entorno'
+      required: true
+      options:
+        - 'dev'
+        - 'pro'
+
+jobs:
+ build:
+  runs-on: ubuntu-latest
+  steps:
+  - name: Checkout code
+    uses: actions/checkout@v4
+  - name: Show env var
+    run: echo "La variable del entorno ${{ github.event.inputs.environment }} es "
+    env:
+      ENV_VAR : ${{ env.ENV_VAR }}

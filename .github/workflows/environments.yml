@@ -9,7 +9,7 @@ jobs:
     matrix: 
       environment: [pro, dev]
   env:
-   ENV_VAR: ${{ secrets[matrix.environment] }}
+   ENV_VAR: ${{ matrix.environment }}
   steps:
     - name: Checkout code
       uses: actions/checkout@v4

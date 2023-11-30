@@ -18,4 +18,4 @@ jobs:
   - name: Checkout code
     uses: actions/checkout@v4
   - name: Show env var
-    run: echo "La variable del entorno ${{ github.event.inputs.environment }} es ${{ env.ENV_VAR }}"
+    run: echo "La variable del entorno ${{ github.event.inputs.environment }} es ${{ env.ENV_VAR }} /////  ${{ secrets.SECRET_VAR }}"

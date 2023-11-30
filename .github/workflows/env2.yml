@@ -13,8 +13,10 @@ on:
 jobs:
  deploy:
   runs-on: ubuntu-latest
+  environment:
+    name: ${{ github.event.inputs.environment }}
   steps:
   - name: Checkout code
     uses: actions/checkout@v4
   - name: Showing env var
-    run: echo "The environment variable of ${{ github.event.inputs.environment }} is ${{ github.event.inputs.environment.ENV_VAR }} and the secret is ${{ secrets[github.event.inputs.environment]}}"
+    run: echo "The environment variable of ${{ github.event.inputs.environment }} is ${{ github.event.inputs.environment.ENV_VAR }} and the secret is ${{ secrets.SECRET_VAR }}"

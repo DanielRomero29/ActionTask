@@ -1,4 +1,4 @@
-name: Env-Action-v2
+name: Env-Options
 on: 
  workflow_dispatch:
   inputs:

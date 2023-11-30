@@ -4,13 +4,15 @@ on:
  
 jobs:
  deploy:
-   runs-on: ubuntu-latest
-   strategy: 
-     matrix: 
-       environment: [pro, dev]
-   steps:
-     - name: Checkout code
-       uses: actions/checkout@v4
-     - name: Show environment variable
-       run: echo "La variable del entorno ${{ matrix.environment }} es ${{ vars.matrix.environment }}"
+  runs-on: ubuntu-latest
+  strategy: 
+    matrix: 
+      environment: [pro, dev]
+  env:
+   ENV_VAR: ${{ secrets[matrix.environment] }}
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Show environment variable
+      run: echo "La variable del entorno ${{ matrix.environment }} es ${{ vars.ENV_VAR }}"
        

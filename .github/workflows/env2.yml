@@ -10,10 +10,9 @@ on:
         - 'dev'
         - 'pro'
         
-env:
- ENV_VAR: ${{ github.event.inputs.environment }}
 jobs:
  deploy:
+  environment: ${{ github.event.inputs.environment }}
   runs-on: ubuntu-latest
   steps:
   - name: Checkout code

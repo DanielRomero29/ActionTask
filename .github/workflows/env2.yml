@@ -3,12 +3,12 @@ on:
  workflow_dispatch:
   inputs:
     environment:
-      type: choice
+      type: environment
       description: 'Escoge un entorno'
       required: true
-      options:
-        - 'dev'
-        - 'pro'
+      #options:
+        #- 'dev'
+        #- 'pro'
         
 jobs:
  deploy:

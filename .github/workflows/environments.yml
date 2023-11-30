@@ -8,10 +8,11 @@ jobs:
    strategy: 
      matrix: 
        environment: [pro, dev]
+   env:
+    ENV_VAR : ${{ matrix.environment }}
    steps:
      - name: Checkout code
        uses: actions/checkout@v4
      - name: Show environment variable
-       run: echo ${{ matrix.environment }}
-       env:
-         ENV_VAR : ${{ env[matrix.environment] }}
+       run: echo "La variable del entorno ${{ matrix.environment }} es ${{ env.ENV_VAR }}"
+       

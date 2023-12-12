@@ -13,8 +13,10 @@ on:
 jobs:
  mostrarHola:
   runs-on: ubuntu-latest
+  env:
+   MY_SECRET: ${{ secrets.envSEC }}
   steps:
     - name: Checkout code
       uses: actions/checkout@v3
     - name: Mostrar Hola, mundo!
-      run: echo "Hola mundo!!"
+      run: echo $MY_SECRET

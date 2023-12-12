@@ -8,5 +8,7 @@ jobs:
     uses: ./.github/workflows/mostrarEcho.yml
     #with:
      # config-path: .github/labeler.yml
+    #secrets:
+      #envSEC: ${{ secrets.SEC }}
     with: 
       var1: ${{ github.event.inputs.holaMundo }}

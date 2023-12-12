@@ -1,0 +1,22 @@
+name: Call workflow
+
+on: 
+ workflow_call:
+  inputs:
+    config-path:
+      required: true
+      type: string
+  secrets:
+      token:
+       required: true
+         
+jobs:
+  mostrarEcho:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Run mostrarEcho
+      uses: ./.github/workflows/mostrarEcho.yml
+      with: 
+        envSEC: ${{ secrets.SEC }}

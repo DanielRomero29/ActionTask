@@ -1,0 +1,13 @@
+name: Mostrar Hola mundo!
+
+on: 
+ workflow_dispatch:
+
+jobs:
+ mostrarHola:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Mostrar Hola, mundo!
+      run: echo "Hola mundo!!"

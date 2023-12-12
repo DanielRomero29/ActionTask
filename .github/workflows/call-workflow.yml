@@ -11,4 +11,4 @@ jobs:
     #secrets:
       #envSEC: ${{ secrets.SEC }}
     with: 
-      var1: ${{ env.holaMundo }}
+      var1: ${{ vars.holaMundo }}

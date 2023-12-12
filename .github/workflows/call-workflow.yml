@@ -10,6 +10,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
     - name: Run mostrarEcho
-      uses: ./.github/workflows/mostrarEcho.yml
+      uses: ./.github/workflows/action.yml
       with: 
         envSEC: ${{ secrets.SEC }}

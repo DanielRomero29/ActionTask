@@ -1,7 +1,14 @@
 name: Mostrar Hola mundo!
 
 on: 
- workflow_dispatch:
+ workflow_call:
+  inputs:
+    config-path:
+      required: true
+      type: string
+  secrets:
+      token:
+       required: true
 
 jobs:
  mostrarHola:

@@ -3,20 +3,25 @@ name: Mostrar Hola mundo!
 on: 
  workflow_call:
   inputs:
-    config-path:
-      required: false
-      type: string
-  secrets:
-      envSEC:
+    #config-path:
+      #required: false
+      #type: string
+  #secrets:
+      #envSEC:
+       #required: false
+     var1:
        required: false
+       type: string
 
 jobs:
  mostrarHola:
   runs-on: ubuntu-latest
   env:
-   MY_SECRET: ${{ secrets.envSEC }}
+   #MY_SECRET: ${{ secrets.envSEC }}
+   MY_VAR: ${{ inputs.var1 }}
   steps:
     - name: Checkout code
       uses: actions/checkout@v3
     - name: Mostrar Hola, mundo!
-      run: echo $MY_SECRET
+      #run: echo $MY_SECRET
+      run: echo $MY_VAR
